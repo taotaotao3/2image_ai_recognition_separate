@@ -21,7 +21,7 @@ Please use requirements.txt
 
 2:Please put A-Pattern image in "before\1" Folder.
 
-3:Please put A-Pattern image in "before\1" Folder.
+3:Please put B-Pattern image in "before\2" Folder.
 
 4:python AI_Image_Separate.py
 
