@@ -11,7 +11,11 @@ In order to make them stand out, the characters etc. are painted black once. The
 
 Subsequent training of the image itself allows for great separation.
 
-## Demo
+## Constuction
+Keras==2.2.0
+tensorflow-gpu==1.6.0
+termcolor==1.1.0
+wxPython==4.0.7.post2
 
 ## Requirement
 Please use requirements.txt
@@ -38,3 +42,9 @@ Please use requirements.txt
 ## Licence
 
 [MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
+
+## A word
+Please request any improvements that are better.
+Now your document organization is left to artificial intelligence.
+Now, get started!
+
