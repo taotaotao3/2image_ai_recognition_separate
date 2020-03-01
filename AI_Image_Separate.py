@@ -1,13 +1,13 @@
 ﻿import pdb
-################################### pyocr prepare ################################################################
+################################### prepare ################################################################
 #
 # (sepImTool) C:\Users\user\20190102>
 #
 # python AI_Image_Separate.py
 #
-# If featuring up → Put in beforeFolder & 特徴量抽出 push
-# If Learning → Put in LearningFolder & 学習 push
-# If Inference → Put in targetingFolder & 推論 push
+# If featuring up → Put in beforeFolder & feature extract push
+# If Learning → Put in LearningFolder & learning push
+# If Inference → Put in targetingFolder & inference push
 #
 #
 #
@@ -424,12 +424,12 @@ class Main(wx.Frame):
  
         wx.Frame.__init__(self, parent, id, title, size=(620, 400))
         self.folder = os.path.dirname(os.path.abspath(__file__))
-        self.h5file = "～.h5 ファイル"
+        self.h5file = "～.h5 File"
         panel1 = wx.Panel(self, wx.ID_ANY)
         v_layout = wx.BoxSizer(wx.VERTICAL)
 
         # 説明書き１
-        s_text_1 = wx.StaticText(panel1, wx.ID_ANY, 'はじめに学習させたい画像2パターンをimageフォルダの中のbeforeフォルダへ入れて下さい。', style=wx.TE_CENTER)
+        s_text_1 = wx.StaticText(panel1, wx.ID_ANY, 'First, put the 2 patterns you want to learn in the before folder in the image folder。', style=wx.TE_CENTER)
         v_layout.Add(s_text_1, proportion=0, flag=wx.EXPAND)
 
         # 画像1ディレクトリ表示
@@ -447,12 +447,12 @@ class Main(wx.Frame):
         v_layout.Add(s_text_12, proportion=0, flag=wx.EXPAND)
 
         # 説明書き２
-        s_text_2 = wx.StaticText(panel1, wx.ID_ANY, '画像を入れたら、それらの特徴抽出を行いましょう。'+ '\r\n' + '（C:\\Users\\user\\20190102\\image\\learning\\に既に' + '\r\n' + '画像が作成されているのであれば省略可能です。)', style=wx.TE_CENTER)
+        s_text_2 = wx.StaticText(panel1, wx.ID_ANY, 'Once you have the images, let\'s extract those features.'+ '\r\n' + '（C:\\Users\\user\\20190102\\image\\learning\\' + '\r\n' + 'This can be omitted if the image has already been created. )', style=wx.TE_CENTER)
         v_layout.Add(s_text_2, proportion=0, flag=wx.EXPAND)
 
 
         # 特徴抽出ボタンButton
-        extruct_feature_button = wx.Button(panel1, wx.ID_ANY, "特徴抽出")
+        extruct_feature_button = wx.Button(panel1, wx.ID_ANY, "Feature extraction")
         extruct_feature_button.Bind(wx.EVT_BUTTON, self.extruct_feature_method)
         v_layout.Add(extruct_feature_button, proportion=0, flag=wx.ALIGN_CENTER_HORIZONTAL)
 
@@ -461,12 +461,12 @@ class Main(wx.Frame):
         v_layout.Add(s_text_23, proportion=0, flag=wx.EXPAND)
 
         # 説明書き３
-        s_text_3 = wx.StaticText(panel1, wx.ID_ANY, '抽出完了のダイアログが出たら、学習を行いましょう。' + '\r\n' + '（既に学習済みであれば省略できます。次に進んで下さい。)', style=wx.TE_CENTER)
+        s_text_3 = wx.StaticText(panel1, wx.ID_ANY, 'If the dialog of extraction completion appears, let\'s learn.' + '\r\n' + '(If you have already learned, you can skip it. Please proceed to the next.)', style=wx.TE_CENTER)
         v_layout.Add(s_text_3, proportion=0, flag=wx.EXPAND)
 
 
         # 学習Button
-        learning_button = wx.Button(panel1, wx.ID_ANY, "学習")
+        learning_button = wx.Button(panel1, wx.ID_ANY, "Learning")
         learning_button.Bind(wx.EVT_BUTTON, self.learning_method)
         v_layout.Add(learning_button, proportion=0, flag=wx.ALIGN_CENTER_HORIZONTAL)
 
@@ -475,7 +475,7 @@ class Main(wx.Frame):
         v_layout.Add(s_text_45, proportion=0, flag=wx.EXPAND)
 
         # 説明書き４と５の間
-        s_text_45 = wx.StaticText(panel1, wx.ID_ANY, 'C:\\Users\\user\\20190102\\image\\target\\ に、' + '\r\n' + '分類したい画像群を入れて下さい。', style=wx.TE_CENTER)
+        s_text_45 = wx.StaticText(panel1, wx.ID_ANY, 'C:\\Users\\user\\20190102\\image\\target\\ に、' + '\r\n' + 'Enter the group of images you want to classify.', style=wx.TE_CENTER)
         v_layout.Add(s_text_45, proportion=0, flag=wx.EXPAND)
 
         # 説明書き４と５の間
@@ -483,47 +483,13 @@ class Main(wx.Frame):
         v_layout.Add(s_text_45, proportion=0, flag=wx.EXPAND)
 
         # 説明書き３.５
-        s_text_354 = wx.StaticText(panel1, wx.ID_ANY, '学習モデルのh5ファイルを選択し、分類（推論）を行う。', style=wx.TE_CENTER)
+        s_text_354 = wx.StaticText(panel1, wx.ID_ANY, 'Select the h5 file of the learning model and perform classification (inference).', style=wx.TE_CENTER)
         v_layout.Add(s_text_354, proportion=0, flag=wx.EXPAND)
 
         # 学習済でモデル選択Button
-        choose_button1 = wx.Button(panel1, wx.ID_ANY, "分類作業開始（既学習モデル選択）")
+        choose_button1 = wx.Button(panel1, wx.ID_ANY, "Classification work started (learned model selection)")
         choose_button1.Bind(wx.EVT_BUTTON, self.choose_h5_inference_method)
         v_layout.Add(choose_button1, proportion=0, flag=wx.ALIGN_CENTER_HORIZONTAL)
-
-        # h5ディレクトリ表示
-        # self.choose_text_h5 = wx.StaticText(panel1, wx.ID_ANY, self.folder, style=wx.TE_CENTER)
-        #self.choose_text_h5 = wx.StaticText(panel1, wx.ID_ANY, self.folder, style=wx.TE_CENTER)
-        #v_layout.Add(choose_text_h5, proportion=0, flag=wx.EXPAND)
-
-        # 説明書き３.５と４の間
-        # s_text_34 = wx.StaticText(panel1, wx.ID_ANY, '↓', style=wx.TE_CENTER)
-        # v_layout.Add(s_text_34, proportion=0, flag=wx.EXPAND)
-
-        # 説明書き４
-        # s_text_4 = wx.StaticText(panel1, wx.ID_ANY, '学習モデルを選択後に、分類（推論）ボタンを押して下さい。' + '\r\n' + 'Resultフォルダに画像が分別されます。', style=wx.TE_CENTER)
-        # v_layout.Add(s_text_4, proportion=0, flag=wx.EXPAND)
-
-
-        # フォルダ選択(分類前)Button
-        # choose_button3 = wx.Button(panel1, wx.ID_ANY, "フォルダの選択(分類前)")
-        # choose_button3.Bind(wx.EVT_BUTTON, self.choose_h5_method)
-        # v_layout.Add(choose_button3, proportion=0, flag=wx.ALIGN_CENTER_HORIZONTAL)
-
-        # 分類前ディレクトリ表示
-        # self.choose_text3 = wx.StaticText(panel1, wx.ID_ANY, self.folder, style=wx.TE_CENTER)
-        # v_layout.Add(self.choose_text3, proportion=0, flag=wx.EXPAND)
-
-
-        # 説明書き５
-        # s_text_5 = wx.StaticText(panel1, wx.ID_ANY, '分類したい画像群の場所を指定したら、最後に分類(推論)ボタンを押しましょう。Resultフォルダに画像が分かれて出力されます。', style=wx.TE_CENTER)
-        # v_layout.Add(s_text_5, proportion=0, flag=wx.EXPAND)
-
-
-        # 分類実行Button
-        # inference_button = wx.Button(panel1, wx.ID_ANY, "分類(推論)")
-        # inference_button.Bind(wx.EVT_BUTTON, self.inference_method)
-        # v_layout.Add(inference_button, proportion=0, flag=wx.ALIGN_CENTER_HORIZONTAL)
 
         panel1.SetSizer(v_layout)
  
@@ -536,9 +502,6 @@ class Main(wx.Frame):
         # self.Close(True) # ← self.Close(True) & self.Exit(True) → 完全にアプリが閉じられる
         self.Exit(True) # ← self.Exit(True) → 元のトップ画面に戻るだけ
 
-    # D:\ProgramData\Anaconda3\envs\py37gpu_resnet\gazou_bunrui_wake\gakusyu_moto2\1
-    # ↑に色塗りされた画像が出来ていればここは実行する必要性なし
-
     # フォルダ1を実行
     def image1_feature_extruct(self, event):
         import cv2
@@ -547,12 +510,10 @@ class Main(wx.Frame):
         import sys
         import os
 
-        # 以下のディレクトリに画像が配置してある
-        # work_folder_dir = newCurrentDirectory + "gazou_bunrui_wake\\1\\"
         # 画像名をリスト化
         list_hensuu = os.listdir(image1_Directory)
         if(list_hensuu == []):
-            wx.MessageBox('beforeフォルダの中の1番フォルダに画像が入っていません。')
+            wx.MessageBox('There is no image in the first folder in the before folder.')
             self.OnExitApp(event)
         # 初めに画像特徴量抽出メソッド定義
         def gazou_feature_extruct(file_name):
@@ -652,8 +613,6 @@ class Main(wx.Frame):
 
 
     #########################################################################################
-    # D:\ProgramData\Anaconda3\envs\py37gpu_resnet\gazou_bunrui_wake\gakusyu_moto2\1
-    # ↑に色塗りされた画像が出来ていればここは実行する必要性なし
 
     # フォルダ2に対して実行
     def image2_feature_extruct(self, event):
@@ -662,12 +621,10 @@ class Main(wx.Frame):
         import sys
         import os
 
-        # 以下のディレクトリに画像が配置してある
-        # work_folder_dir = newCurrentDirectory + "gazou_bunrui_wake\\1\\"
         # 画像名をリスト化
         list_hensuu = os.listdir(image2_Directory)
         if(list_hensuu == []):
-            wx.MessageBox('beforeフォルダの中の1番フォルダに画像が入っていません。')
+            wx.MessageBox('There is no image in the first folder in the before folder.')
             self.OnExitApp(event)
         # 初めに画像特徴量抽出メソッド定義
         def gazou_feature_extruct(file_name):
@@ -766,7 +723,7 @@ class Main(wx.Frame):
     def extruct_feature_method(self, event):
         self.image1_feature_extruct(event)
         self.image2_feature_extruct(event)
-        wx.MessageBox('特徴抽出が完了しました。')
+        wx.MessageBox('Feature extraction is complete.')
         
 
 
@@ -780,11 +737,11 @@ class Main(wx.Frame):
         import os
         list_hensuu_lrn1 = os.listdir(gakusyu_moto2_dir1)
         if(list_hensuu_lrn1 == []):
-            wx.MessageBox('learningフォルダの中の1番フォルダに画像が入っていません。')
+            wx.MessageBox('There is no image in the first folder in the learning folder.')
             self.OnExitApp(event)
         list_hensuu_lrn2 = os.listdir(gakusyu_moto2_dir2)
         if(list_hensuu_lrn2 == []):
-            wx.MessageBox('learningフォルダの中の2番フォルダに画像が入っていません。')
+            wx.MessageBox('There is no image in the second folder in the learning folder.')
             self.OnExitApp(event)
         
         # learning method and extruct Learning data
@@ -799,9 +756,7 @@ class Main(wx.Frame):
         import numpy as np
         from sklearn import model_selection
         import glob
-        # 画像がフォルダにクラス分けされて格納されているディレクトリ
-        # 例：gazou_bunrui_wake/ikki/～.jpg
-        # 例：gazou_bunrui_wake/niki/～.jpg
+
         files = glob.glob(gakusyu_moto2_dir + "*")
         print(files[0][-1:]) # > ikki
         classes = []
@@ -821,15 +776,12 @@ class Main(wx.Frame):
         import os
         X = []
         Y = []
-        #まずfor文で画像のインデックスとクラスを取得(1:りんご,2,ブドウ...)
-        #for index,classlabel in enumerate(classes):
 
-        # photos_dir = newCurrentDirectory + "gazou_bunrui_wake\\gakusyu_moto2"
         photos_dir = gakusyu_moto2_dir
         
         #globでそれぞれの漢字一文字ずつのフォルダを取得
         files = glob.glob(photos_dir + "/*") # ['C:\\Users\\user\\20190102\\image\\learning\\1', 'C:\\Users\\user\\20190102\\image\\learning\\2']
-        # file = D:/ProgramData/Anaconda3/envs/py37gpu_resnet/gazou_bunrui_wake/ikki
+
         for index,file in enumerate(files): 
 
             print(index)
@@ -1320,7 +1272,7 @@ class Main(wx.Frame):
         ############################# learning model save ##################################################
         model.save('model_gazouwake_20200105.h5')
         ############################# learning model save ##################################################
-        wx.MessageBox('学習が完了しました。学習モデルh5出力完了。')
+        wx.MessageBox('Learning is complete. Learning model h5 output completed.')
     ############################ 学習 learning #######################################################################################
 
 
@@ -1328,63 +1280,6 @@ class Main(wx.Frame):
     ############################ 分類（推論） learning #######################################################################################
     def choose_h5_inference_method(self, event):
         """ choose_text_h5を選択し、targetフォルダにある画像をまず特徴抽出し、リスト化してから推論を一枚ずつしていき、分類していく """
-        
-        ######## まずはtarget画像群の特徴抽出 #######################################
-        # import pyocr
-        # import pyocr.builders
-        # import cv2
-        # from PIL import Image
-        # Image.MAX_IMAGE_PIXELS = 1000000000
-        # import sys
-        # import os
-
-        # # 以下のディレクトリに画像が配置してある
-        # # work_folder_dir = newCurrentDirectory + "gazou_bunrui_wake\\1\\"
-        # # 画像名をリスト化
-        # list_hensuu = os.listdir(target_Directory)
-        # if(list_hensuu == []):
-        #     wx.MessageBox('targetフォルダに画像が入っていません。')
-        #     self.OnExitApp(event)
-        
-        # # 初めに画像特徴量抽出メソッド定義
-        # def gazou_feature_extruct(file_name):
-
-        #     tools = pyocr.get_available_tools()
-
-        #     if len(tools) == 0:
-        #         print("No OCR tool found")
-        #         sys.exit(1)
-
-        #     tool = tools[0]
-
-        #     #file_name = file_name_arg
-        #     #file_dir = newCurrentDirectory + "gazou_bunrui_wake\\"
-        #     #img1 = file_dir + "1\\" + file_name
-        #     img1 = target_Directory + file_name
-        #     res = tool.image_to_string(Image.open(img1),
-        #                             lang="jpn",
-        #                             builder=pyocr.builders.WordBoxBuilder(tesseract_layout=6))
-
-        #     out = cv2.imread(img1)
-        #     for d in res:
-        #         # print(d.content)
-        #         # print(d.position)
-        #         #cv2.rectangle(out, d.position[0], d.position[1], (0, 0, 255), 2)
-        #         # ##### 四角枠に色塗り #####
-        #         # 小さすぎる、大きすぎる枠は除外
-        #         menseki = (d.position[1][0] - d.position[0][0]) * (d.position[1][1] - d.position[0][1]) 
-        #         if((menseki < 100) or ( 125000 < menseki)):
-        #             continue
-        #         # ##########################
-        #         cv2.rectangle(out, (d.position[0][0], d.position[0][1]), (d.position[1][0], d.position[1][1]), (0, 0, 0), thickness=-1)
-
-        #     # 学習用に画像を別途保存（フォルダをあらかじめ作っておかないと作成されない）
-        #     #cv2.imwrite(file_dir + "gakusyu_moto2\\" + "1\\" + file_name, out)
-        #     cv2.imwrite(target_learning_Directory + file_name, out)
-        #     # cv2.imshow("img", out)
-        #     cv2.waitKey(0)
-        #     cv2.destroyAllWindows()
-
         # # リスト化された画像名をメソッドに投入
         # for list_hensuu_ko in list_hensuu:
         #     # 1枚ずつ特徴量を抽出していく
@@ -1395,12 +1290,10 @@ class Main(wx.Frame):
         import sys
         import os
 
-        # 以下のディレクトリに画像が配置してある
-        # work_folder_dir = newCurrentDirectory + "gazou_bunrui_wake\\1\\"
         # 画像名をリスト化
         list_hensuu = os.listdir(target_Directory)
         if(list_hensuu == []):
-            wx.MessageBox('targetフォルダの中の1番フォルダに画像が入っていません。')
+            wx.MessageBox('There is no image in the first folder in the target folder.')
             self.OnExitApp(event)
         # 初めに画像特徴量抽出メソッド定義
         def gazou_feature_extruct(file_name):
@@ -1657,7 +1550,7 @@ class Main(wx.Frame):
 
 def main():
     app = wx.App(False)
-    Main(None, wx.ID_ANY, "AI画像特徴抽出 分類器")
+    Main(None, wx.ID_ANY, "AI image feature extraction classifier")
     app.MainLoop()
  
 if __name__ == "__main__":
