@@ -39,10 +39,6 @@ Please use requirements.txt
 
 8:Please select your h5 File
 
-## Licence
-
-[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
-
 ## A word
 Please request any improvements that are better.
 Now your document organization is left to artificial intelligence.
